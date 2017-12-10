@@ -1,0 +1,4 @@
+services:
+#    test_locations.example:
+#        class: Test\LocationsBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]

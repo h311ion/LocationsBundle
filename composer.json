@@ -1,0 +1,14 @@
+{
+    "name": "anton-kozlov/locations",
+    "description": "A 8Bit test code",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Anton Kozlov",
+            "email": "toxa113@yandex.ru"
+        }
+    ],
+    "require": {
+        "symfony/symfony": "3.4"
+    }
+}
