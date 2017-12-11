@@ -1,6 +1,6 @@
 {
     "name": "anton-kozlov/locations",
-    "description": "A 8Bit test code",
+    "description": "A 8Bit test bundle",
     "license": "MIT",
     "authors": [
         {
@@ -9,6 +9,17 @@
         }
     ],
     "require": {
-        "symfony/symfony": "3.4"
-    }
+        "symfony/symfony": "3.4",
+        "guzzlehttp/guzzle": "^6.2@dev",
+        "justinrainbow/json-schema": "^5.0@dev"
+    },
+    "autoload": {
+        "psr-4": {
+            "Test\\LocationsBundle\\": ""
+        },
+        "exclude-from-classmap": [
+            "/Tests/"
+        ]
+    },
+    "minimum-stability": "dev"
 }

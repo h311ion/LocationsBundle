@@ -1,0 +1,110 @@
+{
+  "title": "Locations response",
+  "oneOf": [
+	{
+	  "$ref": "#/definitions/success_response"
+	},
+	{
+	  "$ref": "#/definitions/fail_response"
+	}
+  ],
+  "definitions": {
+	"success_response": {
+	  "title": "Success response",
+	  "type": "object",
+	  "properties": {
+		"data": {
+		  "type": "object",
+		  "properties": {
+			"locations": {
+			  "type": "array",
+			  "items": {
+				"$ref": "#/definitions/location"
+			  }
+			}
+		  },
+		  "required": [
+			"locations"
+		  ],
+		  "additionalProperties": false
+		},
+		"success": {
+		  "type": "boolean",
+		  "enum": [
+			true
+		  ]
+		}
+	  },
+	  "required": [
+		"success",
+		"data"
+	  ],
+	  "additionalProperties": false
+	},
+	"fail_response": {
+	  "title": "Fail response",
+	  "type": "object",
+	  "properties": {
+		"data": {
+		  "type": "object",
+		  "properties": {
+			"message": {
+			  "type": "string"
+			},
+			"code": {
+			  "type": "string"
+			}
+		  },
+		  "required": [
+			"message",
+			"code"
+		  ],
+		  "additionalProperties": false
+		},
+		"success": {
+		  "type": "boolean",
+		  "enum": [
+			false
+		  ]
+		}
+	  },
+	  "required": [
+		"success",
+		"data"
+	  ],
+	  "additionalProperties": false
+	},
+	"location": {
+	  "type": "object",
+	  "properties": {
+		"name": {
+		  "type": "string"
+		},
+		"coordinates": {
+		  "$ref": "#/definitions/coordinates"
+		}
+	  },
+	  "required": [
+		"name",
+		"coordinates"
+	  ],
+	  "additionalProperties": false
+	},
+	"coordinates": {
+	  "type": "object",
+	  "properties": {
+		"lat": {
+		  "type": "number"
+		},
+		"long": {
+		  "type": "number"
+		}
+	  },
+	  "required": [
+		"lat",
+		"long"
+	  ],
+	  "additionalProperties": false
+	}
+  }
+}
