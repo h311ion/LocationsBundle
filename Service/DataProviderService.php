@@ -67,7 +67,7 @@ class DataProviderService
         }
 
         try {
-            $errors = $this->validator->validate($inputRequest);
+            $errors = $this->validator->validate($inputRequest, null, [$inputRequest->isSuccess() ? 'success' : 'fail']);
         } catch (\Exception $e) {
             throw new MalformedJsonException($e->getMessage());
         }
