@@ -5,6 +5,8 @@ namespace Test\LocationsBundle\Service;
 use JMS\Serializer\Naming\CamelCaseNamingStrategy;
 use JMS\Serializer\SerializerBuilder;
 use JustBlackBird\JmsSerializerStrictJson\StrictJsonDeserializationVisitor;
+use Symfony\Component\Validator\ConstraintViolationListInterface;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Test\LocationsBundle\Entity\Coordinates;
 use Test\LocationsBundle\Entity\InputRequest;
 use Test\LocationsBundle\Entity\Location;
@@ -22,12 +24,19 @@ class DataProviderService
     private $fileLocator;
 
     /**
+     * @var ValidatorInterface
+     */
+    private $validator;
+
+    /**
      * Configuration constructor.
      * @param FileLocator $fileLocator
+     * @param ValidatorInterface $validator
      */
-    public function __construct(FileLocator $fileLocator)
+    public function __construct(FileLocator $fileLocator, ValidatorInterface $validator)
     {
         $this->fileLocator = $fileLocator;
+        $this->validator = $validator;
     }
 
     /**
@@ -57,7 +66,14 @@ class DataProviderService
             throw new MalformedJsonException($e->getMessage());
         }
 
-        // TODO Check valid
+        try {
+            $errors = $this->validator->validate($inputRequest);
+        } catch (\Exception $e) {
+            throw new MalformedJsonException($e->getMessage());
+        }
+        if (count($errors) > 0) {
+            throw new MalformedJsonException($this->getValidatorErrorMessage($errors));
+        }
 
         if (!$inputRequest->isSuccess()) {
             throw new ErrorResponseException(
@@ -85,18 +101,17 @@ class DataProviderService
     }
 
     /**
-     * @param array $errors JsonSchema errors
+     * @param ConstraintViolationListInterface $errors
      * @return string
      */
-    private function getValidatorErrorMessage(array $errors): string
+    private function getValidatorErrorMessage(ConstraintViolationListInterface $errors): string
     {
-        $message = '';
+        $messages = [];
 
         foreach ($errors as $error) {
-            $message .= $error['property'] . ': ' . $error['message'];
-
+            $messages[] = $error->getPropertyPath() . ': ' . $error->getMessage();
         }
 
-        return $message;
+        return implode(PHP_EOL, $messages);
     }
 }

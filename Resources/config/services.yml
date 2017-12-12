@@ -5,10 +5,4 @@ services:
 
     locations.data_provider:
         class: \Test\LocationsBundle\Service\DataProviderService
-        arguments: ["@validator", "@serializer"]
-
-
-#        "symfony/symfony": "3.4",
-#        "guzzlehttp/guzzle": "^6.2@dev",
-#        "jms/serializer": "^1.10@dev",
-#        "justblackbird/jms-serializer-strict-json": "dev-master"
+        arguments: ["@file_locator", "@validator"]
