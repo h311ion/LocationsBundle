@@ -1,7 +1,8 @@
 <?php
 
 
-namespace Test\LocationsBundle\Entity;
+namespace Test\LocationsBundle\Entity\Input;
+
 
 use JMS\Serializer\Annotation\Type;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -10,7 +11,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * Class InputRequest
  * @package Test\LocationsBundle\Entity
  */
-class InputRequest
+class Request
 {
     /**
      * @var bool
@@ -20,7 +21,7 @@ class InputRequest
     private $success;
 
     /**
-     * @var InputData
+     * @var Data
      * @Type("Test\LocationsBundle\Entity\InputData")
      * @Assert\NotBlank
      * @Assert\Valid
@@ -44,17 +45,17 @@ class InputRequest
     }
 
     /**
-     * @return InputData
+     * @return Data
      */
-    public function getData(): InputData
+    public function getData(): Data
     {
         return $this->data;
     }
 
     /**
-     * @param InputData $data
+     * @param Data $data
      */
-    public function setData(InputData $data): void
+    public function setData(Data $data): void
     {
         $this->data = $data;
     }

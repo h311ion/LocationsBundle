@@ -1,16 +1,16 @@
 <?php
 
 
-namespace Test\LocationsBundle\Entity;
+namespace Test\LocationsBundle\Entity\Input;
 
 use JMS\Serializer\Annotation\Type;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Class InputLocation
+ * Class Location
  * @package Test\LocationsBundle\Entity
  */
-class InputLocation
+class Location
 {
     /**
      * @var string
@@ -21,7 +21,7 @@ class InputLocation
     private $name;
 
     /**
-     * @var InputCoordinates
+     * @var Coordinates
      * @Type("Test\LocationsBundle\Entity\InputCoordinates")
      * @Assert\NotBlank(groups={"success"})
      * @Assert\Valid
@@ -46,17 +46,17 @@ class InputLocation
     }
 
     /**
-     * @return InputCoordinates
+     * @return Coordinates
      */
-    public function getCoordinates(): InputCoordinates
+    public function getCoordinates(): Coordinates
     {
         return $this->coordinates;
     }
 
     /**
-     * @param InputCoordinates $coordinates
+     * @param Coordinates $coordinates
      */
-    public function setCoordinates(InputCoordinates $coordinates): void
+    public function setCoordinates(Coordinates $coordinates): void
     {
         $this->coordinates = $coordinates;
     }

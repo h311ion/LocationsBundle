@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Test\LocationsBundle\Entity;
+namespace Test\LocationsBundle\Entity\Input;
 
 use JMS\Serializer\Annotation\Type;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -10,7 +10,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * Class InputRequest
  * @package Test\LocationsBundle\Entity
  */
-class InputCoordinates
+class Coordinates
 {
     /**
      * @var float

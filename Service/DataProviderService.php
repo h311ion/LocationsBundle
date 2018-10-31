@@ -8,7 +8,7 @@ use JustBlackBird\JmsSerializerStrictJson\StrictJsonDeserializationVisitor;
 use Symfony\Component\Validator\ConstraintViolationListInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Test\LocationsBundle\Entity\Coordinates;
-use Test\LocationsBundle\Entity\InputRequest;
+use Test\LocationsBundle\Entity\Input\Request;
 use Test\LocationsBundle\Entity\Location;
 use Symfony\Component\HttpKernel\Config\FileLocator;
 use Test\LocationsBundle\Exception\ErrorResponseException;
@@ -60,8 +60,8 @@ class DataProviderService
             ->build();
 
         try {
-            /** @var InputRequest $inputRequest */
-            $inputRequest = $serializer->deserialize($json, InputRequest::class, 'json');
+            /** @var Request $inputRequest */
+            $inputRequest = $serializer->deserialize($json, Request::class, 'json');
         } catch (\Exception $e) {
             throw new MalformedJsonException($e->getMessage());
         }
