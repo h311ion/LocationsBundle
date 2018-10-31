@@ -1,13 +1,13 @@
 <?php
 
 
-namespace Test\LocationsBundle\Entity;
+namespace Test\LocationsBundle\Entity\Input;
 
 use JMS\Serializer\Annotation\Type;
 use Symfony\Component\Validator\Constraints as Assert;
 
 
-class InputData
+class Data
 {
     /**
      * @var string
@@ -26,7 +26,7 @@ class InputData
     private $code;
 
     /**
-     * @var InputLocation[]
+     * @var Location[]
      * @Type("array<Test\LocationsBundle\Entity\InputLocation>")
      * @Assert\All({
      *     @Assert\NotBlank,
@@ -70,7 +70,7 @@ class InputData
     }
 
     /**
-     * @return InputLocation[]
+     * @return Location[]
      */
     public function getLocations(): array
     {
@@ -78,7 +78,7 @@ class InputData
     }
 
     /**
-     * @param InputLocation[] $locations
+     * @param Location[] $locations
      */
     public function setLocations(array $locations): void
     {
